@@ -37,7 +37,7 @@ def transform_data(**kwargs):
     df['Formatted Date'] = pd.to_datetime(df['Formatted Date'], utc=True)
     df['Formatted Date'] = df['Formatted Date'].dt.tz_localize(None)
 
-    # Drop duplicate dates
+    # Drop duplicates (if date and time of day are the same)
     df.drop_duplicates(subset='Formatted Date', inplace=True)
 
     # Precip type has two different values, rain and snow
@@ -68,6 +68,8 @@ def transform_data(**kwargs):
         df[column] = df[column].fillna(mode_value)
 
 
+    """ Daily averages """
+    
     # Create new column for date without time of day
     df['Date'] = df['Formatted Date'].dt.date
 

@@ -76,18 +76,6 @@ def transform_data(**kwargs):
     # Create new dataframe for daily averages grouping by date
     daily_averages_df = df.groupby('Date')[['Temperature (C)', 'Humidity', 'Wind Speed (km/h)']].agg('mean').reset_index()
 
-    # Add daily averages to original dataframe
-    df = df.merge(
-        daily_averages_df.rename(
-            columns={
-                'Temperature (C)': 'avg_temperature_c',
-                'Humidity': 'avg_humidity',
-                'Wind Speed (km/h)': 'avg_wind_speed_kmh'
-            }
-        ),
-        on='Date',
-        how='left'
-    )
 
 
     """ Adding new columns for current month and monthly mode """

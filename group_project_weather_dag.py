@@ -45,7 +45,9 @@ def transform_data(**kwargs):
     fill_values = np.where(df['Temperature (C)'] <= 0, 'snow', 'rain')
     df['Precip Type'] = df['Precip Type'].fillna(pd.Series(fill_values, index=df.index))
 
-
+    """ The loud cover column is misspelled and only contains the value 0.0, let's remove it """
+    
+    df.drop('Loud Cover', axis=1, inplace=True)
 
     """ Replacing possible negative values with '?' in columns where value can't be negative,
      then replacing all '?' values with NaN, then replacing NaN with mode in columns with numerical data """

@@ -21,7 +21,7 @@ default_args = {
 
 # Define the DAG
 dag = DAG(
-    'WeatherHistory_Project_incomplete',
+    'WeatherHistory_Project',
     default_args=default_args,
     description='ETL pipeline for the weather history',
     schedule_interval='@daily',

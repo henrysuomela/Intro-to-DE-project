@@ -29,7 +29,7 @@ dag = DAG(
 
 # File paths
 csv_file_path = '/home/intro/airflow/datasets/weatherHistory.csv'
-db_path = '/home/intro/airflow/databases/weatherHistory_database.db'
+db_path = '/home/intro/airflow/databases/weather_data.db'
 
 # Task 1: Extract data
 def extract_data(**kwargs):
@@ -289,7 +289,7 @@ validate_task = PythonOperator(
 
 # Task 4: Load data
 def load_data(**kwargs):
-    # Retrieve validated file path from XCom
+    # Retrieve validated file paths from XCom
     daily_validated_file_path = kwargs['ti'].xcom_pull(key='daily_validated_file_path')
     monthly_validated_file_path = kwargs['ti'].xcom_pull(key='monthly_validated_file_path')
 

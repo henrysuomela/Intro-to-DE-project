@@ -282,6 +282,7 @@ validate_task = PythonOperator(
     task_id='validate_task',
     python_callable=validate_data,
     provide_context=True,
+    trigger_rule='all_success',
     dag=dag,
 )
 

@@ -206,7 +206,7 @@ def transform_data(**kwargs):
     """ Monthly averages """
 
     # Create the new dataframe
-    monthly_avg_df = df.groupby('Month')[['Temperature (C)', 'Humidity', 'Wind Speed (km/h)', 'Visibility (km)', 'Pressure (millibars)']].mean()
+    monthly_avg_df = df.groupby('Month')[['Temperature (C)', 'Apparent Temperature (C)', 'Humidity', 'Wind Speed (km/h)', 'Visibility (km)', 'Pressure (millibars)']].mean()
 
     # Extract each month's precip type mode
     mode_precip_type = df.groupby('Month')['Mode'].first()

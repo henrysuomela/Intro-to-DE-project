@@ -257,8 +257,8 @@ transform_task = PythonOperator(
 # Task 3: Validate data
 def validate_data(**kwargs):
     # Retrieve file paths from XCom
-    daily_transformed_file_path = kwargs['ti'].xcom_pull(key='daily_transformed_file_path')
-    monthly_transformed_file_path = kwargs['ti'].xcom_pull(key='monthly_transformed_file_path')
+    daily_validated_file_path = kwargs['ti'].xcom_pull(key='daily_transformed_file_path')
+    monthly_validated_file_path = kwargs['ti'].xcom_pull(key='monthly_transformed_file_path')
 
     # Read files into dataframes
     daily_avg_df = pd.read_csv(daily_transformed_file_path)
@@ -319,12 +319,12 @@ def validate_data(**kwargs):
     
 
     # Validated file paths
-    daily_validated_file_path = '/tmp/daily_validated_weatherHistory.csv'
-    monthly_validated_file_path = '/tmp/monthly_validated_weatherHistory.csv'
+    #daily_validated_file_path = '/tmp/daily_validated_weatherHistory.csv'
+    #monthly_validated_file_path = '/tmp/monthly_validated_weatherHistory.csv'
 
     # Export to csv
-    daily_avg_df.to_csv(daily_validated_file_path, index=False)
-    monthly_avg_df.to_csv(monthly_validated_file_path, index=False)
+    #daily_avg_df.to_csv(daily_validated_file_path, index=False)
+    #monthly_avg_df.to_csv(monthly_validated_file_path, index=False)
 
     # Pass the file paths to XCom for the next task
     kwargs['ti'].xcom_push(key='daily_validated_file_path', value=daily_validated_file_path)

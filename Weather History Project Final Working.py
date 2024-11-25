@@ -316,19 +316,11 @@ def validate_data(**kwargs):
     if not flagged_values_monthly.empty:
         print("Extreme outliers found in the monthly table:")
         print(flagged_values_monthly)
-    
 
-    # Validated file paths
-    daily_validated_file_path = '/tmp/daily_validated_weatherHistory.csv'
-    monthly_validated_file_path = '/tmp/monthly_validated_weatherHistory.csv'
-
-    # Export to csv
-    daily_avg_df.to_csv(daily_validated_file_path, index=False)
-    monthly_avg_df.to_csv(monthly_validated_file_path, index=False)
 
     # Pass the file paths to XCom for the next task
-    kwargs['ti'].xcom_push(key='daily_validated_file_path', value=daily_validated_file_path)
-    kwargs['ti'].xcom_push(key='monthly_validated_file_path', value=monthly_validated_file_path)
+    kwargs['ti'].xcom_push(key='daily_validated_file_path', value=daily_transformed_file_path)
+    kwargs['ti'].xcom_push(key='monthly_validated_file_path', value=monthly_transformed_file_path)
 
 
 validate_task = PythonOperator(
